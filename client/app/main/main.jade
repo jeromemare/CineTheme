@@ -1,0 +1,27 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+header#banner.hero-unit
+  .container
+    h1 Cinéma & Thèmes
+    p.lead Liste de films d'intérêt général regroupés par thèmes
+
+.container
+  div(masonry, infinite-scroll='addMoreMovies()', infinite-scroll-distance='2')
+    div.masonry-brick.col-lg-4.col-md-4.col-sm-6.col-xs-12(ng-repeat='movie in movies | filter:filterModel.search | limitTo:limit')
+      div.panel.panel-info
+        div.panel-body
+            div.movieTile
+                div.movieTileHeader
+                div.movieTileFooter {{ movie.name }}
+                img(ng-src='{{ movie.img }}', alt='{{ movie.name }}')
+
+
+
+footer.footer
+  .container
+    p
+      | Angular Fullstack v2.0.13
+      = ' | '
+      a(href='https://twitter.com/tyhenkel') @tyhenkel
+      = ' | '
+      a(href='https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open') Issues
